@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin</title>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <%= javascript_include_tag :defaults %>
+    <%= stylesheet_link_tag ['admin'] %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <div id="main">
+      <%= render :partial => 'layouts/admin_header'%>
+      <div id="middle">
+        <%if session[:admin] %> 
+          <%= render :partial => 'side' %>
+        <%else%>
+        <div id="left-column">
+          <ul class="nav">
+            <li>로그인 하세요</li>
+          </ul>
+        </div>
+        <%end%>
+        <div id="center-column">
+          <%= yield %>
+        </div>
+        <div id="right-column">
+          <strong class="h">Quick Info</strong>
+          <div class="box">This is your admin home page. It will give you access to all things within the back end system that you will need to facilitate a smooth operation.</div>
+        </div>
+      </div>
+      <div id="footer"><p>Developed by <a href="http://twitter.com/umutm">Umut Muhaddisoglu</a> 2008. Updated for HTML5/CSS3 by <a href="http://mediagearhead.com">Giles Wells</a> 2010.</p></div>
+    </div>
+  </body>
+</html>

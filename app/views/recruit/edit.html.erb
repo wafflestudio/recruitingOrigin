@@ -1,0 +1,76 @@
+<% #coding:utf-8 -%>
+<h2>지원서 수정</h2>
+<div id="container">
+<%= form_for :applicant, @applicant, :url => recruit_path, :html => {:method => :put } do |f| %>
+  <% if @applicant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @applicant.errors.count %>개의 오류가 발생했습니다.</h2>
+
+      <ul>
+        <% @applicant.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <legend>개인정보</legend>
+    <div class="fm-req">
+      <%= f.label :name, "이름", :class => 'inline' %>
+      <%= f.text_field :name %>
+    </div>
+    
+    <div class="fm-req">
+      <%= f.label :organization, "소속", :class => 'inline' %>
+      <%= f.text_field :organization %>
+    </div>
+
+    <div class="fm-req">
+      <%= f.label :email, :class => 'inline' %>
+      <%= @applicant.email %>
+    </div>
+
+    <div class="fm-req">
+      <%= f.label :phone, "휴대전화(ex : 010-1234-4567)", :class => 'inline' %>
+      <%= f.text_field :phone %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>질문</legend>
+  <!-- 질문 영역 -->
+  <% (0...@questions.length).each do |indx| -%>
+    <% question  = @questions[indx] -%>
+    <% answer = @applicant.answers[indx] %>
+    <%= f.fields_for :answers, answer do |ff| -%>
+      <%= ff.hidden_field :question_id, :value => answer.question_id %>
+      <% case question.question_type -%>
+      <% when 1-%>
+      <div class="fm-req">
+        <%= ff.label :question, question.title, :class => 'question' %>
+        <%= ff.text_area :content, :class => 'answer' %>
+      </div>  
+      <% when 2  # 객관식 타입 (라디오버튼) -%>
+      <div class="fm-multi">
+        <div class="fm-opt">
+          <%= ff.label :question, question.title, :class => 'question' %>
+        <% question.items.each_with_index do |item, idx| -%>
+          <label class="item" for="answer_<%= indx %>_content_<%= idx %>"><%= item.to_s%>
+            <%= ff.radio_button :content, idx %>
+          </label>
+        <% end -%>
+        </div>
+      </div>
+      <% when 3  #객관식 타입 (중복선택) -%>
+        <%= ff.check_box :content, question.items[indx] %>
+      <% end -%>
+    <% end -%>
+  <% end -%>
+  </fieldset>
+
+  <div id="fm-submit" class="fm-req">
+    <%= f.submit '확인'%>
+  </div>
+<% end -%>
+</div>

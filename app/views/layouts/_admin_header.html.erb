@@ -1,0 +1,10 @@
+<% #coding : utf-8 -%>
+<div id="header">
+  <a href="#" class="logo">Wafflestudio Recruit 사이트 관리</a>
+    <ul id="top-navigation">
+      <li><%= link_to 'Question', admin_questions_path, :class => (params[:controller] == 'admin/questions' ? 'active' : '') %></li>
+      <li><%= link_to 'Applicant', admin_applicants_path, :class => (params[:controller] == "admin/applicants" ? 'active' : '') %></li>
+      <li><%= link_to '서비스페이지 이동', root_path %></li>
+  </ul>
+</div>
+

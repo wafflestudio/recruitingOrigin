@@ -1,0 +1,145 @@
+body {
+  font:12px Nanum Gothic, 나눔고딕, sans-serif;
+  padding:0;margin:20px;color:#333;background:#fff;
+  text-align:center;
+}
+
+div.login-failed {
+  text-align:center;
+  color: #ff2e00;
+  margin-bottom: 10px;
+}
+
+div#error_explanation h2{
+  padding-left: 1em;
+  font-weight: normal;
+  color: #ff2e00;
+  font-size: 1.2em;
+
+}
+
+div#intro p {
+	font-size: 13px;
+}
+
+div.box {
+  border: 1px solid #ddd;
+  padding: 10px;
+  padding-top: 0px;
+	margin-bottom: 15px;
+}
+
+div.new_recruit {
+  padding-top: 10px;
+  text-align: center;
+}
+
+div.new_recruit a{
+  text-decoration:none;
+  background: url(http://cdn1.iconfinder.com/data/icons/gnomeicontheme/24x24/actions/gtk-go-back-rtl.png) 100% 0 no-repeat;
+  padding-right: 30px;
+  font-size: 20px;
+  height: 32px;
+/*  display:block;*/
+}
+
+form {
+  margin:0;
+  padding:0;
+}
+
+fieldset {
+  margin:1em;
+  border:none;
+  border-top:1px solid #ccc;
+}
+
+legend {
+  margin :1em;
+  padding:0 .5em;
+  color:#036;
+  background:transparent;
+  font-size:1.3em;
+  font-weight:bold;
+
+}
+
+label {
+  width:200px;
+  padding:0 1em;
+  text-align:right;
+}
+label.inline {
+  float:left;
+  padding-top: 2px;
+}
+
+label.question {
+  clear:both;
+  padding: 0 1.2em;
+  display:block;
+  text-align:left;
+  width: 100%;
+  font-weight:normal;
+  font-size:1.2em;
+
+  background:url(http://cdn2.iconfinder.com/data/icons/splashyIcons/arrow_state_grey_right.png) 0 -2px no-repeat 
+}
+
+fieldset div {
+  margin-bottom: .5em;
+  padding:0;
+  display:block;
+}
+
+fieldset div textarea.answer {
+  width: 100%;
+  margin-left: 1em;
+}
+
+fieldset div span.answer {
+  font-weight:normal;
+}
+
+div.answer {
+  font-weight:normal;
+  padding-left: 1em;
+  padding-top: 0;
+}
+
+
+fieldset div input,fieldset div textarea
+{
+  width:150px;
+  border-top:1px solid #555;
+  border-left:1px solid #555;
+  border-bottom:1px solid #ccc;
+  border-right:1px solid #ccc;
+  padding:1px;color:#333;
+}
+fieldset div select
+{
+  padding:1px;
+}
+div.fm-multi div{
+  margin:5px 0;
+}
+div.fm-multi input{
+  width:1em;
+}
+div.fm-multi label.question{
+  display:block;width:100%;padding-left:1.2em;text-align:left;
+}
+
+div.fm-multi label.item {
+  display:block;width:200px;padding-left:2em;text-align:left;font-size:1.0em; }
+
+
+#fm-submit{clear:both;padding-top:1em;text-align:center;}#fm-submit input{border:1px solid #333;padding:2px 1em;background:#555;color:#fff;font-size:100%;}
+#fm-submit a {border:1px solid #333;padding:2px 1em;background:#555;color:#fff;font-size:100%;text-decoration:none;}
+
+input:focus,textarea:focus{background:#efefef;color:#000;}fieldset div.fm-req{font-weight:bold;}
+/*fieldset div.fm-req label:before{content:"*";}*/
+#container{margin:0 auto;padding:1em;width:600px;text-align:left;}
+p#fm-intro{margin:0;}
+

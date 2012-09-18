@@ -1,0 +1,42 @@
+<h1>Show Applicant</h1>
+<div class="table">
+  <table class="listing" cellpadding="0" cellspacing="0">
+    <tr>
+      <th>Name</th><td><%=@applicant.name%></td>
+    </tr>
+    <tr>
+      <th>Email</th><td><%=@applicant.email%></td>
+    </tr>
+    <tr>
+      <th>소속</th><td><%=@applicant.organization%></td>
+    </tr>
+    <tr>
+      <th>created_at</th><td><%=@applicant.created_at.localtime.strftime("%m월 %d일 %H시 %M분")%></td>
+    </tr>
+    <tr>
+      <th>updated_at</th><td><%=@applicant.updated_at.localtime.strftime("%m월 %d일 %H시 %M분")%></td>
+    </tr>
+
+    <!-- 응답영역 -->
+    <% @applicant.answers.each_with_index do |answer, indx| %>
+      <% question = @questions[indx] %>
+      <tr>
+        <th colspan="2"><%= question.title %></th>
+      </tr>
+      <tr>
+        <td colspan="2">
+        	<% if question.type_name == "객관식" -%>
+        		<%= question.items[answer.content.to_i] %>
+        	<% else -%>
+        		<%= simple_format(answer.content) %>
+        	<% end -%>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to 'List', admin_applicants_path%> |
+<!--  <%= link_to 'Destroy', admin_applicant_path(@applicant), :method => :delete, :confirm => "Are you sure?"%> |
+-->
+  <%= link_to 'Prev', admin_applicant_path(@applicant.prev) if @applicant.prev %> | 
+  <%= link_to 'Next', admin_applicant_path(@applicant.next) if @applicant.next %>
+</div>

@@ -1,0 +1,65 @@
+<% #coding:utf-8 -%>
+<h2>작성한 지원서 보기</h2>
+<div id="container">
+  <fieldset>
+    <legend>개인정보</legend>
+    <div class="fm-req">
+      <%= label_tag :name, "이름" , :class => 'inline'%>
+      <span class="answer"><%= @applicant.name %></span>
+    </div>
+    
+    <div class="fm-req">
+      <%= label_tag :organization, "소속", :class => 'inline' %>
+      <span class="answer"><%= @applicant.organization %></span>
+    </div>
+
+    <div class="fm-req">
+      <%= label_tag :email, '이메일' , :class => 'inline'%>
+      <span class="answer"><%= @applicant.email %></span>
+    </div>
+
+    <div class="fm-req">
+      <%= label_tag :phone, "휴대전화", :class => 'inline' %>
+      <span class="answer"><%= @applicant.phone %></span>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>질문</legend>
+  <!-- 질문 영역 -->
+  <% (0...@questions.length).each do |indx| -%>
+    <% question  = @questions[indx] -%>
+    <% answer = @applicant.answers[indx] %>
+      <% case question.question_type -%>
+      <% when 1-%>
+      <div class="fm-req">
+        <%= label_tag :question, question.title, :class => 'question' %>
+        <div class="answer">
+        <%= simple_format(answer.content) %>
+        </div>
+      </div>  
+      <% when 2  # 객관식 타입 (라디오버튼) -%>
+      <div class="fm-req">
+          <%= label_tag :question, question.title, :class => 'question' %>
+          <div class="answer">
+          <%= simple_format(question.items[answer.content.to_i])%>
+          </div>
+      </div>
+      <% when 3  #객관식 타입 (중복선택) -%>
+        <div class="fm-req">
+          <div class="answer">
+          <%= simple_format( @applicant.content.split(";").map {|i| question.items[i].to_s}.join(",")) %>
+        </div>
+      </div>
+      <% end -%>
+    <% end -%>
+  </fieldset>
+
+  <div id="fm-submit" class="fm-req">
+<% if false %>
+<%=link_to '수정', edit_recruit_path(:id => @applicant.id)%> 
+<%=link_to '삭제', recruit_path(:id => @applicant.id), :method => 'delete', :confirm => 'Are you sure?' %> 
+<% end %>
+<%=link_to '로그아웃', signout_recruit_index_path %> 
+  </div>
+</div>

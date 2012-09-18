@@ -1,0 +1,33 @@
+<h1>Show Question</h1>
+<div class="table">
+  <table class="listing" cellpadding="0" cellspacing="0">
+    <tr>
+      <th>Title</th><td><%=@question.title%></td>
+    </tr>
+    <tr>
+      <th>Type</th><td><%=@question.type_name%></td>
+    </tr>
+    <% if @question.question_type == 1 || @question.question_type == 2 %>
+    <tr>
+      <th>Items</th>
+      <td>
+        <ul>
+        <% @question.items.each do |item| %>
+          <li><%= item.to_s %></li>
+        <% end %>
+      </ul>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <th>created_at</th><td><%=@question.created_at%></td>
+    </tr>
+    <tr>
+      <th>updated_at</th><td><%=@question.updated_at%></td>
+    </tr>
+  </table>
+</div>
+
+<%= link_to 'Back', admin_questions_path%> |
+<%= link_to 'Edit', edit_admin_question_path(@question)%> |
+<%= link_to 'Destroy', admin_question_path(@question), :method => :delete, :confirm => "Are you sure?"%>
